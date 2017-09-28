@@ -1,0 +1,34 @@
+﻿{
+  "Articles": [
+    {
+      "Id": 1,
+      "Name": "White bread",
+      "Price": 10.00,
+      "Vat": 5.00
+    },
+    {
+      "Id": 2,
+      "Name": "Milk 1L",
+      "Price": 5.00,
+      "Vat": 25.00
+    },
+    {
+      "Id": 3,
+      "Name": "Beer Dunkel",
+      "Price": 12.00,
+      "Vat": 13.00
+    },
+    {
+      "Id": 4,
+      "Name": "Coca-cola 0.5L",
+      "Price": 8.00,
+      "Vat": 25.00
+    },
+    {
+      "Id": 5,
+      "Name": "Sugar 1kg",
+      "Price": 4.00,
+      "Vat": 25.00
+    }
+  ]
+}

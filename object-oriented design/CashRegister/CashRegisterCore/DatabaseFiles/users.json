@@ -1,0 +1,21 @@
+﻿{
+  "Index": 2,
+  "Users": [
+    {
+      "Id": 1,
+      "Username": "admin",
+      "Hash": "70c881d4a26984ddce795f6f71817c9cf4480e79",
+      "Name": "John",
+      "Surename": "Admin",
+      "Role": "admin"
+    },
+    {
+      "Id": 2,
+      "Username": "cashier",
+      "Hash": "70c881d4a26984ddce795f6f71817c9cf4480e79",
+      "Name": "John",
+      "Surename": "Doe",
+      "Role": "cashier"
+    }
+  ]
+}
