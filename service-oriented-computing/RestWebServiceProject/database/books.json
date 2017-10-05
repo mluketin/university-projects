@@ -1,0 +1,35 @@
+{
+	"books": [
+		{
+			"userId": 1,
+			"id": 1,
+			"title": "Blood of Elves",
+			"summary": "About a year before the beginning of the story, The Empire of Nilfgaard attacks the Kingdom of Cintra. Queen Calanthe, lethally wounded, commits suicide and her granddaughter, Cirilla, called Ciri and nicknamed the 'Lion Cub of Cintra' manages to flee from the burning capital city. Emhyr var Emreis, Emperor of Nilfgaard, sends his spies to find her. He knows that this young girl has great importance, not only because of her royal blood, but also because of her magical potential and elven blood in her veins."
+		},
+		{
+			"userId": 1,
+			"id": 2,
+			"title": "Time of Contempt",
+			"summary": "The story in Time of Contempt begins where the previous book left off. The Northern Kingdoms are secretly preparing a provocation, that would give them a pretext for war with Nilfgaard. What the kings do not know, is the fact, that the Emperor is aware of their plans and is preparing his armies too."		
+		},
+		{
+			"userId": 1,
+			"id": 3,
+			"title": "Baptism of Fire",
+			"summary": "Geralt recovers in Brokilon forest after the Thanedd incident, but he is intent on leaving as quickly as possible and continuing on his path to find Ciri. In Brokilon, he meets a young woman who will follow him on his journey towards Nilfgaard. Meanwhile, Ciri has settled into a life with some people elsewhere whom she finally can call her friends. The witcher, accompanied by Dandelion and the young woman he meets in Brokilon, undertake a dangerous journey, meeting new people along the way and discovering the truth about the mysterious Black Rider who has been plaguing Ciri's dreams. One of the new friends they make along the way turns out to be rather interesting..."
+		},
+		{
+			"userId": 2,
+			"id": 1,
+			"title": "Nothing",
+			"summary": "Plot for this nothing book"
+		},
+		{
+			"userId": 2,
+			"id": 2,
+			"title": "Second nothing book",
+			"summary": "Plot for this second nothing book"
+		}
+		
+	]
+}

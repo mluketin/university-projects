@@ -1,0 +1,98 @@
+GET /docs 
+
+	Returns documentation for web service
+	
+GET /api 
+
+	Returns HTML file with interface to interact with WS
+	
+=> POST to users is free to all, no auth	
+=> Resources bellow are protected with authentification
+=> Unauthenticated user won't be able to interact with resources	
+	- message return will be {message: "Unauthorized access"}
+	- status code will be 401
+	
+=>Unsafe methods on resources are allowed only to the owner of resources
+	example: only I can edit or add my book and my user name and surname
+	
+	status code 401 will be returned if user tries unsafe method on other users resource
+	
+=> every body content type will be json	
+=> server auto generates id for book and user for POST methods
+=> PUT are not able to change id of user or book
+	
+GET /login
+
+	returns {
+			"id": user.id,
+			"name": user.name,
+			"surname": user.surname
+			}
+			
+	id, name, and surname of user who is authenticated throug basic auth
+	
+POST /users
+
+	if user exists returns {registered: false, message: "User already exists!"}
+	if user does not exist returns {registered: true, message: "User registered successfully"}
+	
+	
+	
+GET /users
+
+		returns all users as JSON object 
+		{
+			users: [
+				{
+					id: <id>,
+					username: <username>,
+					hash: <hash>,
+					name: <name>,
+					surname: <surname>
+				},...
+			]
+		}
+		
+		
+GET /users/:id		
+	returns json object of user for given id
+	
+PUT /users/:id
+	updates name or surname of user for given id
+	requires json {name: <name>, surname:<surname>}
+	
+DELETE /users/:id
+	deletes user for given id 
+	
+GET /users/:id/books
+	returns array of books owned by user with given id
+	example response:
+	[
+		{
+			"userId": 1,
+			"id": 1,
+			"title": "Blood of Elves",
+			"summary": "About a year before the beginning of the story, The Empire of Nilfgaard attacks the Kingdom of Cintra. Queen Calanthe, lethally wounded, commits suicide and her granddaughter, Cirilla, called Ciri and nicknamed the 'Lion Cub of Cintra' manages to flee from the burning capital city. Emhyr var Emreis, Emperor of Nilfgaard, sends his spies to find her. He knows that this young girl has great importance, not only because of her royal blood, but also because of her magical potential and elven blood in her veins."
+		},
+		{
+			"userId": 1,
+			"id": 2,
+			"title": "Time of Contempt",
+			"summary": "The story in Time of Contempt begins where the previous book left off. The Northern Kingdoms are secretly preparing a provocation, that would give them a pretext for war with Nilfgaard. What the kings do not know, is the fact, that the Emperor is aware of their plans and is preparing his armies too."		
+		}
+	]
+	
+GET /users/:id/books/:bookid
+		returns spesific book for given bookid for user with given id
+		if book does not exists, status code is 204
+		
+DELETE /users/:id/books/:bookid
+		deletes book with given bookid, if it does not exists status code is 204
+	
+PUT 	/users/:id/books/:bookid
+		updates book information for given book id
+		
+POST /users/:id/books
+	adds new book
+	requires json body {title: <title>, summary: <summary>}
+	

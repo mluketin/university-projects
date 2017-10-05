@@ -1,0 +1,19 @@
+{
+	"index": 2,
+	"users": [
+	   {
+		  "username" : "user1",
+		  "hash" : "70c881d4a26984ddce795f6f71817c9cf4480e79",
+		  "name": "user1Name",
+		  "surename": "user1Surname",
+		  "id": 1
+	   },
+	   {
+		  "username" : "john123",
+		  "hash" : "70c881d4a26984ddce795f6f71817c9cf4480e79",
+		  "name": "John",
+		  "surename": "Doe",
+		  "id": 2
+	   }
+	]
+}

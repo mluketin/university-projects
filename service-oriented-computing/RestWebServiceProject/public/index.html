@@ -1,0 +1,951 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>RZNU-lab</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="col-sm-6">
+        <h1>RZNU LAB1</h1>
+        <div id="userInfoDiv"></div>
+        </br>
+        <div id="messageDiv"></div>
+        </br>
+        <div id="loginDiv" class="content">
+            <div class="form-group">
+                <label for="usr">Username:</label>
+                <input type="text" class="form-control" id="username">
+            </div>
+            <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="password">
+            </div>
+            <div>
+                <button id="loginBtn" type="button" class="btn btn-success">Log in</button>
+            </div>
+            </br>
+            </br>
+            <button id="registerBtn" type="button" class="btn btn-success">Register</button>
+        </div>
+        <div id="registerDiv" class="content" hidden>
+            <div class="form-group">
+                <label for="usr">Username:</label>
+                <input type="text" class="form-control" id="usernameRegister">
+            </div>
+            <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="passwordRegister">
+            </div>
+            <div class="form-group">
+                <label for="repwd">Repeat Password:</label>
+                <input type="password" class="form-control" id="repasswordRegister">
+            </div>
+            <div class="form-group">
+                <label for="usr">Name:</label>
+                <input type="text" class="form-control" id="nameRegister">
+            </div>
+            <div class="form-group">
+                <label for="usr">surname:</label>
+                <input type="text" class="form-control" id="surnameRegister">
+            </div>
+            </br>
+            <button id="createUserBtn" type="button" class="btn btn-success">Register</button>
+        </div>
+        <div class="content" id="homeDiv" hidden>
+            <button id="editMyUserBtn" type="button" class="btn btn-success">Edit My Account</button>
+            <button id="listAllUsersBtn" type="button" class="btn btn-success">List All Users</button>
+            <button id="listMyBooksBtn" type="button" class="btn btn-success">List My Books</button>
+            <button id="homeAddMyBook" type="button" class="btn btn-success">Add new book</button>
+            <br />
+            <br />
+            <br />
+            <input type="text" class="form-control" id="userId" placeholder="user id">
+            <br />
+            <button id="getUserBtn" type="button" class="btn btn-success">Get User</button>
+            <br />
+            <br />
+            <br />
+            <div id="homeSubcontent">
+                <div id="editMyInfoDiv" class="subcontent" hidden>
+                    <h3>Edit my account </h3>
+                    <div class="form-group">
+                        <label for="usr">Name:</label>
+                        <input type="text" class="form-control" id="editNameIn">
+                    </div>
+                    <div class="form-group">
+                        <label for="usr">surname:</label>
+                        <input type="text" class="form-control" id="editsurnameIn">
+                    </div>
+                    <button id="saveMyUserInfo" type="button" class="btn btn-success">Save</button>
+                    <button id="deleteMyAccount" type="button" class="btn btn-danger">Delete my account</button>
+                </div>
+                <div id="listAllUsersDiv" class="subcontent" hidden>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>username</th>
+                                <th>hash</th>
+                                <th>name</th>
+                                <th>surname</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBodyAllUsers"></tbody>
+                    </table>
+                </div>
+                <div id="singleUserDiv" class="subcontent" hidden>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>username</th>
+                                <th>hash</th>
+                                <th>name</th>
+                                <th>surname</th>
+                            </tr>
+                        </thead>
+                        <tbody id="singleUserBody"></tbody>
+                    </table>
+
+                    <button id="getUserBooksBtn" type="button" class="btn btn-success">Get Books</button>
+                    <br />
+                    <br />
+                    <br />
+                    <input type="text" class="form-control" id="singleBookId" placeholder="book id">
+                    <button id="getSingleBook" type="button" class="btn btn-success">Get Single Book</button>
+                    <!--
+                    <button id="editUser" type="button" class="btn btn-success">Edit User</button>
+                    -->
+                </div>
+                <div id="editUserDiv" class="subcontent" hidden>
+                    <h3>Edit user</h3>
+                    <div class="form-group">
+                        <label for="usr">Name:</label>
+                        <input type="text" class="form-control" id="editUserNameIn">
+                    </div>
+                    <div class="form-group">
+                        <label for="usr">surname:</label>
+                        <input type="text" class="form-control" id="editUsersurnameIn">
+                    </div>
+                    <!--
+                    <button id="saveUser" type="button" class="btn btn-success">Save</button>
+                    <button id="deleteUser" type="button" class="btn btn-danger">Delete user</button>
+                    -->
+                </div>
+
+                <div id="myBooksOptions" class="subcontent" hidden>
+                    <input type="text" class="form-control" id="myBookId" placeholder="book id">
+                    <button id="editMyBook" type="button" class="btn btn-success">Edit</button>
+                    <div id="myBookList" class="subcontent" hidden>
+
+
+                    </div>
+                </div>
+
+                <div id="editMyBookDiv" class="subcontent" hidden>
+                    <div class="form-group">
+                        <label for="usr">UserId:</label>
+                        <input type="text" class="form-control" id="myEditBookUserId" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="usr">LocalBookId:</label>
+                        <input type="text" class="form-control" id="myEditBookId" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="usr">Title:</label>
+                        <input type="text" class="form-control" id="myEditBookTitle">
+                    </div>
+                    <div class="form-group">
+                        <label for="usr">Summary:</label>
+                        <textarea rows="5" class="form-control" id="myEditBookSummary"></textarea>
+                    </div>
+                    <br />
+                    <br />
+                    <button id="saveMyBook" type="button" class="btn btn-success">Save</button>
+                    <button id="deleteMyBook" type="button" class="btn btn-danger">Delete book</button>
+
+                </div>
+
+                <div id="addMyBookDiv" class="subcontent" hidden>
+                    <div class="form-group">
+                        <label for="usr">Title:</label>
+                        <input type="text" class="form-control" id="addBookTitleIn">
+                    </div>
+                    <div class="form-group">
+                        <label for="usr">Summary:</label>
+                        <textarea rows="5" class="form-control" id="addBookSummaryIn"></textarea>
+                    </div>
+                    <br />
+                    <br />
+                    <button id="addMyBook" type="button" class="btn btn-success">Add</button>
+
+                </div>
+
+                <div id="bookList" class="subcontent" hidden>
+
+                </div>
+                <div id="userBooksDiv" class="subcontent" hidden>
+                    <h3>Books</h3>
+                    <div class="form-group">
+                        <label for="usr">UserId:</label>
+                        <input type="text" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="usr">LocalBookId:</label>
+                        <input type="text" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="usr">Title:</label>
+                        <input type="text" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="usr">Summary:</label>
+                        <textarea rows="5" class="form-control" readonly></textarea>
+                    </div>
+                </div>
+
+                <div id="submessageDiv"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="http://localhost:8081/public/script?script=utils.js"></script>
+
+    <script>
+        var myAccountDetails;
+
+        var userInfoDiv = document.getElementById("userInfoDiv");
+        var messageDiv = document.getElementById("messageDiv");
+        var submessageDiv = document.getElementById("submessageDiv");
+
+        //login
+        var loginDiv = document.getElementById("loginDiv");
+        var usernameIn = document.getElementById("username");
+        var passwordIn = document.getElementById("password");
+        var loginBtn = document.getElementById("loginBtn");
+        var registerBtn = document.getElementById("registerBtn");
+
+        //register
+        var registerDiv = document.getElementById("registerDiv");
+        var registerUsernameIn = document.getElementById("usernameRegister");
+        var registerPasswordIn = document.getElementById("passwordRegister");
+        var registerRePasswordIn = document.getElementById("repasswordRegister");
+        var registerNameIn = document.getElementById("nameRegister");
+        var registersurnameIn = document.getElementById("surnameRegister");
+        var createUserBtn = document.getElementById("createUserBtn");
+
+        //home
+        var homeSubcontent = document.getElementById("homeSubcontent");
+        var editMyUserInfoBtn = document.getElementById("editMyUserBtn");
+        var listAllUsersBtn = document.getElementById("listAllUsersBtn");
+
+        var homeAddMyBookBtn = document.getElementById("homeAddMyBook");
+
+        //editMyUserInfo
+        var editMyUserInfoDiv = document.getElementById("editMyInfoDiv");
+        var editNameIn = document.getElementById("editNameIn");
+        var editsurnameIn = document.getElementById("editsurnameIn");
+        var saveMyUserInfoBtn = document.getElementById("saveMyUserInfo");
+        var deleteMyAccountBtn = document.getElementById("deleteMyAccount");
+
+        //list all users
+        var listAllUsersDiv = document.getElementById("listAllUsersDiv");
+        var allUsersTableBody = document.getElementById("tableBodyAllUsers");
+
+        //list my books
+
+        //getUser
+        var userIdIn = document.getElementById("userId");
+        var getUserBtn = document.getElementById("getUserBtn");
+        var singleUserBody = document.getElementById("singleUserBody");
+        var editUserBtn = document.getElementById("editUser");
+        var getBooksBtn = document.getElementById("getUserBooksBtn");
+        var getSingleBookBtn = document.getElementById("getSingleBook");
+        var singleBookIdIn = document.getElementById("singleBookId");
+
+        //editUser
+        var editUserDiv = document.getElementById("editUserDiv");
+        var editUserNameIn = document.getElementById("editUserNameIn");
+        var editUsersurnameIn = document.getElementById("editUsersurnameIn");
+        var saveUserBtn = document.getElementById("saveUser");
+        var deleteUserBtn = document.getElementById("deleteUser");
+
+        //list books
+        var listBooksDiv = document.getElementById("bookList");
+        var myListBooksDiv = document.getElementById("myBookList");
+
+        //mybooks
+        var myBookIdIn = document.getElementById("myBookId");
+        var editMyBook = document.getElementById("editMyBook");
+        var deletMyBook = document.getElementById("deleteMyBook");
+
+        var myBookUserId = document.getElementById("myEditBookUserId");
+        var myBookBookId = document.getElementById("myEditBookId");
+        var myBookTitle = document.getElementById("myEditBookTitle");
+        var myBookSummary = document.getElementById("myEditBookSummary");
+        var saveMyBookBtn = document.getElementById("saveMyBook");
+
+
+        //add my book
+        var addBookBtn = document.getElementById("addMyBook");
+
+        var username;
+        var passwordHash;
+
+        loginBtn.onclick = function () {
+            console.log("logBtnClick");
+            username = usernameIn.value;
+            passwordHash = SHA1(passwordIn.value);
+            $.ajax({
+                type: "GET",
+                url: '/login',
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization", 'Basic ' + btoa(username + ':' + passwordHash));
+                },
+                statusCode: {
+                    200: function () {
+                        console.log("ALL OK");
+                    },
+                    401: function () {
+                        console.log("NOT AUTH");
+                        setMessageDiv("No auth");
+                    }
+                }
+            })
+                .done(function (data, statusText, xhr) {
+                    var status = xhr.status;                //200
+                    var head = xhr.getAllResponseHeaders(); //Detail header info
+                    console.log("THIS: ", status, head, data);
+                    myAccountDetails = data;
+                    userInfoDiv.innerHTML = data.name + " " + data.surname;
+                    goToHome();
+                });
+        };
+
+        registerBtn.onclick = function () {
+            console.log("Register Button click");
+            goToRegister();
+        }
+
+        createUserBtn.onclick = function () {
+            var registerUsername = registerUsernameIn.value;
+            var registerPassword = registerPasswordIn.value;
+            var registerRePassword = registerRePasswordIn.value;
+
+            console.log(registerUsername, registerPassword, registerRePassword);
+
+            if (registerPassword == registerRePassword) {
+                console.log(SHA1(registerPassword));
+                var hash = SHA1(registerPassword);
+
+                var postBody = {
+                    username: registerUsername,
+                    hash: hash,
+                    name: registerNameIn.value,
+                    surname: registersurnameIn.value
+                }
+
+                console.log(postBody);
+
+                console.log(hash);
+                $.ajax({
+                    type: "POST",
+                    url: '/users',
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(postBody),
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("Authorization", 'Basic ' + btoa(registerUsername + ':' + hash));
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        if (data.registered == true) {
+                            console.log("registered");
+                            usernameIn.value = registerNameIn.value;
+                            passwordIn.value = registerPasswordIn.value;
+                            goToLogin();
+                        } else {
+                            console.log(data.message);
+                            setMessageDiv(data.message);
+                        }
+                    },
+                    failure: function (errMsg) {
+                        alert(errMsg);
+                    }
+                });
+            }
+            else {
+                alert("Passwords must match");
+                registerPasswordIn.text = "";
+                registerPasswordIn.text = "";
+            }
+        }
+
+        editMyUserInfoBtn.onclick = function () {
+            goToEditMyUserInfo();
+        }
+
+        saveMyUserInfoBtn.onclick = function () {
+            var newName = editNameIn.value;
+            var newsurname = editsurnameIn.value;
+
+            putBody = {
+                name: newName,
+                surname: newsurname
+            };
+
+            $.ajax({
+                type: "PUT",
+                url: '/users/' + myAccountDetails.id,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(putBody),
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization", 'Basic ' + btoa(username + ':' + passwordHash));
+                },
+                statusCode: {
+                    200: function () {
+                        console.log("ALL OK");
+                        setSubMessageDiv("Saved");
+                    },
+                    401: function () {
+                        console.log("NOT AUTH");
+                        setSubMessageDiv("No auth");
+                    }
+                }
+            });
+        }
+
+        deleteMyAccountBtn.onclick = function () {
+            $.ajax({
+                type: "DELETE",
+                url: '/users/' + myAccountDetails.id,
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization", 'Basic ' + btoa(username + ':' + passwordHash));
+                },
+                statusCode: {
+                    200: function () {
+                        console.log("ALL OK");
+                        setSubMessageDiv("DELETED");
+                    },
+                    401: function () {
+                        console.log("NOT AUTH");
+                        setSubMessageDiv("No auth");
+                    }
+                }
+            });
+        }
+
+        listAllUsersBtn.onclick = function () {
+            goToListAllUsers();
+            allUsersTableBody.innerHTML = '';
+            $.ajax({
+                type: "GET",
+                url: '/users',
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization", 'Basic ' + btoa(username + ':' + passwordHash));
+                },
+                statusCode: {
+                    200: function () {
+                        console.log("ALL OK");
+                    },
+                    401: function () {
+                        console.log("NOT AUTH");
+                        setSubMessageDiv("No auth");
+                    }
+                }
+            }).done(function (data, statusText, xhr) {
+                var status = xhr.status;                //200
+                var head = xhr.getAllResponseHeaders(); //Detail header info
+                for (i = 0; i < data.users.length; i++) {
+                    var tr = document.createElement('tr');
+
+                    var tdId = document.createElement('td');
+                    var tdUsername = document.createElement('td');
+                    var tdHash = document.createElement('td');
+                    var tdName = document.createElement('td');
+                    var tdsurname = document.createElement('td');
+
+                    tdId.innerHTML = data.users[i].id;
+                    tdUsername.innerHTML = data.users[i].username;
+                    tdHash.innerHTML = data.users[i].hash;
+                    tdName.innerHTML = data.users[i].name;
+                    tdsurname.innerHTML = data.users[i].surname;
+
+                    tr.appendChild(tdId);
+                    tr.appendChild(tdUsername);
+                    tr.appendChild(tdHash);
+                    tr.appendChild(tdName);
+                    tr.appendChild(tdsurname);
+
+                    allUsersTableBody.appendChild(tr);
+                }
+            });
+        }
+
+        getUserBtn.onclick = function () {
+            goToSingleUser();
+            singleUserBody.innerHTML = '';
+
+            var id = userIdIn.value;
+            $.ajax({
+                type: "GET",
+                url: '/users/' + id,
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization", 'Basic ' + btoa(username + ':' + passwordHash));
+                },
+                statusCode: {
+                    200: function () {
+                        console.log("ALL OK");
+                    },
+                    204: function () {
+                        setSubMessageDiv("User does not exist");
+                    },
+                    401: function () {
+                        console.log("NOT AUTH");
+                        setSubMessageDiv("No auth");
+                    }
+                }
+            })
+                .done(function (data, statusText, xhr) {
+                    var status = xhr.status;                //200
+                    var head = xhr.getAllResponseHeaders(); //Detail header info
+                    console.log("THIS: ", status, head, data);
+                    var tr = document.createElement('tr');
+
+                    var tdId = document.createElement('td');
+                    tdId.setAttribute("id", "selectedUserId");
+                    var tdUsername = document.createElement('td');
+                    var tdHash = document.createElement('td');
+                    var tdName = document.createElement('td');
+                    tdName.setAttribute("id", "selectedUserName");
+
+                    var tdsurname = document.createElement('td');
+                    tdsurname.setAttribute("id", "selectedUsersurname");
+
+
+                    tdId.innerHTML = data.id;
+                    tdUsername.innerHTML = data.username;
+                    tdHash.innerHTML = data.hash;
+                    tdName.innerHTML = data.name;
+                    tdsurname.innerHTML = data.surname;
+
+                    tr.appendChild(tdId);
+                    tr.appendChild(tdUsername);
+                    tr.appendChild(tdHash);
+                    tr.appendChild(tdName);
+                    tr.appendChild(tdsurname);
+                    singleUserBody.appendChild(tr);
+                });
+        }
+
+        getBooksBtn.onclick = function () {
+            var id = document.getElementById("selectedUserId").innerHTML;
+            listBooksDiv.innerHTML = '';
+            goToGetBooks();
+            $.ajax({
+                type: "GET",
+                url: '/users/' + id + "/books",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization", 'Basic ' + btoa(username + ':' + passwordHash));
+                },
+                statusCode: {
+                    200: function () {
+                        console.log("ALL OK");
+                    },
+                    401: function () {
+                        console.log("NOT AUTH");
+                        setSubMessageDiv("No auth");
+                    }
+                }
+            }).done(function (data, statusText, xhr) {
+                var status = xhr.status;                //200
+                var head = xhr.getAllResponseHeaders(); //Detail header info
+                for (i = 0; i < data.books.length; i++) {
+
+                    var div = document.createElement('div');
+                    div.innerHTML = '<div>\
+					<div class="form-group">\
+						<label for="usr">UserId:</label>\
+						<input type="text" class="form-control" value="'+ data.books[i].userId + '"  readonly>\
+					</div>\
+					<div class="form-group">\
+						<label for="usr">LocalBookId:</label>\
+						<input type="text" class="form-control" value="'+ data.books[i].id + '" readonly>\
+					</div>	\
+					<div class="form-group">\
+						<label for="usr">Title:</label>\
+						<input type="text" class="form-control" value="'+ data.books[i].title + '"  readonly>\
+					</div>	\
+					<div class="form-group">\
+						<label for="usr">Summary:</label>\
+						<textarea rows="5" class="form-control" readonly>'+ data.books[i].summary + '</textarea>\
+					</div>	\
+				</div><br/><br/>';
+
+                    listBooksDiv.append(div);
+                }
+            });
+
+        }
+
+        getSingleBookBtn.onclick = function () {
+            listBooksDiv.innerHTML = '';
+            var id = document.getElementById("selectedUserId").innerHTML;
+            var bookId = singleBookIdIn.value;
+            goToGetBooks();
+            $.ajax({
+                type: "GET",
+                url: '/users/' + id + "/books/" + bookId,
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization", 'Basic ' + btoa(username + ':' + passwordHash));
+                },
+                statusCode: {
+                    200: function () {
+                        console.log("ALL OK");
+                    },
+                    401: function () {
+                        console.log("NOT AUTH");
+                        setSubMessageDiv("No auth");
+                    }
+                }
+            }).done(function (data, statusText, xhr) {
+                var status = xhr.status;                //200
+                var head = xhr.getAllResponseHeaders(); //Detail header info
+
+                var div = document.createElement('div');
+                div.innerHTML = '<div>\
+					<div class="form-group">\
+						<label for="usr">UserId:</label>\
+						<input type="text" class="form-control" value="'+ data.userId + '"  readonly>\
+					</div>\
+					<div class="form-group">\
+						<label for="usr">LocalBookId:</label>\
+						<input type="text" class="form-control" value="'+ data.id + '" readonly>\
+					</div>	\
+					<div class="form-group">\
+						<label for="usr">Title:</label>\
+						<input type="text" class="form-control" value="'+ data.title + '"  readonly>\
+					</div>	\
+					<div class="form-group">\
+						<label for="usr">Summary:</label>\
+						<textarea rows="5" class="form-control" readonly>'+ data.summary + '</textarea>\
+					</div>	\
+				</div><br/><br/>';
+
+                listBooksDiv.append(div);
+            });
+
+
+        }
+
+
+        function listMyBooks() {
+            var id = myAccountDetails.id;
+            myListBooksDiv.innerHTML = '';
+            goToGetMyBooks();
+            $.ajax({
+                type: "GET",
+                url: '/users/' + id + "/books",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization", 'Basic ' + btoa(username + ':' + passwordHash));
+                },
+                statusCode: {
+                    200: function () {
+                        console.log("ALL OK");
+                    },
+                    401: function () {
+                        console.log("NOT AUTH");
+                        setSubMessageDiv("No auth");
+                    }
+                }
+            }).done(function (data, statusText, xhr) {
+                var status = xhr.status;                //200
+                var head = xhr.getAllResponseHeaders(); //Detail header info
+                for (i = 0; i < data.books.length; i++) {
+
+                    var div = document.createElement('div');
+                    div.innerHTML = '<div>\
+					<div class="form-group">\
+						<label for="usr">LocalBookId:</label>\
+						<input type="text" class="form-control" value="'+ data.books[i].id + '" readonly>\
+					</div>	\
+					<div class="form-group">\
+						<label for="usr">Title:</label>\
+						<input type="text" class="form-control" value="'+ data.books[i].title + '"  readonly>\
+					</div>	\
+					<div class="form-group">\
+						<label for="usr">Summary:</label>\
+						<textarea rows="5" class="form-control" readonly>'+ data.books[i].summary + '</textarea>\
+					</div>	\
+				</div>\
+				\
+				\
+				<br/><br/>';
+
+                    myListBooksDiv.append(div);
+                }
+            });
+
+        }
+        listMyBooksBtn.onclick = function () {
+            listMyBooks();
+
+
+        }
+
+        editMyBook.onclick = function () {
+            var id = myBookIdIn.value;
+            goToEditMyBook();
+            $.ajax({
+                type: "GET",
+                url: '/users/' + myAccountDetails.id + "/books/" + id,
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization", 'Basic ' + btoa(username + ':' + passwordHash));
+                },
+                statusCode: {
+                    200: function () {
+                        console.log("ALL OK");
+                    },
+                    401: function () {
+                        console.log("NOT AUTH");
+                        setSubMessageDiv("No auth");
+                    }
+                }
+            }).done(function (data, statusText, xhr) {
+                var status = xhr.status;                //200
+                var head = xhr.getAllResponseHeaders(); //Detail header info
+                myBookUserId.value = data.userId;
+                myBookBookId.value = data.id;
+                myBookTitle.value = data.title;
+                myBookSummary.innerHTML = data.summary;
+
+            });
+        }
+
+        saveMyBookBtn.onclick = function () {
+            putBody = {
+                userId: myBookUserId.value,
+                id: myBookBookId.value,
+                title: myBookTitle.value,
+                summary: myBookSummary.innerHTML
+            };
+
+            console.log(putBody);
+
+            $.ajax({
+                type: "PUT",
+                url: '/users/' + myAccountDetails.id + '/books/' + myBookBookId.value,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(putBody),
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization", 'Basic ' + btoa(username + ':' + passwordHash));
+                },
+                statusCode: {
+                    200: function () {
+                        console.log("ALL OK");
+                        setSubMessageDiv("Saved");
+                    },
+                    401: function () {
+                        console.log("NOT AUTH");
+                        setSubMessageDiv("No auth");
+                    }
+                }
+            });
+
+
+        }
+
+        deletMyBook.onclick = function () {
+            $.ajax({
+                type: "DELETE",
+                url: '/users/' + myAccountDetails.id + '/books/' + myBookBookId.value,
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization", 'Basic ' + btoa(username + ':' + passwordHash));
+                },
+                statusCode: {
+                    200: function () {
+                        console.log("ALL OK");
+                        setSubMessageDiv("Deleted");
+                        listMyBooks();
+                    },
+                    204: function () {
+                        setSubMessageDiv("Book does not exist");
+                    },
+                    401: function () {
+                        console.log("NOT AUTH");
+                        setSubMessageDiv("No auth");
+                    }
+                }
+            });
+
+
+        }
+
+        homeAddMyBookBtn.onclick = function () {
+            goToAddBook();
+        }
+
+        addBookBtn.onclick = function () {
+            putBody = {
+                userId: myAccountDetails.id,
+                title: document.getElementById("addBookTitleIn").value,
+                summary: document.getElementById("addBookSummaryIn").value
+            };
+
+            $.ajax({
+                type: "POST",
+                url: '/users/' + myAccountDetails.id + '/books',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(putBody),
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization", 'Basic ' + btoa(username + ':' + passwordHash));
+                },
+                statusCode: {
+                    200: function () {
+                        console.log("ALL OK");
+                        setSubMessageDiv("Created");
+                        listMyBooks();
+                    },
+                    401: function () {
+                        console.log("NOT AUTH");
+                        setSubMessageDiv("No auth");
+                    }
+                }
+            });
+
+
+        }
+
+
+        /*
+        editUserBtn.onclick = function(){
+          var id = document.getElementById("selectedUserId").innerHTML;
+
+          if(id == '') {
+              setSubMessageDiv("No user");
+          } else {
+              goToEditUser();
+              editUserNameIn.value = document.getElementById("selectedUserName").innerHTML;
+              editUsersurnameIn.value = document.getElementById("selectedUsersurname").innerHTML;
+          }
+        }
+
+        saveUserBtn.onclick = function() {
+          var newName = editUserNameIn.value;
+          var newsurname = editUsersurnameIn.value;
+          var userId = document.getElementById("selectedUserId").innerHTML;
+
+          putBody = {
+              name: newName,
+              surname: newsurname
+          };
+
+          $.ajax({
+                type: "PUT",
+                url: '/users/' + userId,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(putBody),
+                beforeSend: function (xhr) {
+                  xhr.setRequestHeader("Authorization", 'Basic ' + btoa(username+':'+passwordHash));
+                },
+                statusCode: {
+                  200: function(){
+                      console.log("ALL OK");
+                      setSubMessageDiv("Saved");
+                  },
+                  401: function(){
+                      console.log("NOT AUTH");
+                      setSubMessageDiv("No auth");
+                  }
+                }
+          });
+        }
+        */
+
+
+
+        function goToRegister() {
+            $('.content').hide();
+            $('#registerDiv').show();
+            //loginDiv.hidden = true;
+            //registerDiv.hidden = false;
+        }
+
+        function goToLogin() {
+            $('.content').hide();
+            $('#loginDiv').show();
+        }
+
+        function goToHome() {
+            $('.content').hide();
+            $('#homeDiv').show();
+        }
+
+        function goToEditMyUserInfo() {
+            $('.subcontent').hide();
+            $('#editMyInfoDiv').show();
+            editNameIn.value = myAccountDetails.name;
+            editsurnameIn.value = myAccountDetails.surname;
+        }
+
+        function goToListAllUsers() {
+            $('.subcontent').hide();
+            $('#listAllUsersDiv').show();
+        }
+
+        function goToSingleUser() {
+            $('.subcontent').hide();
+            $('#singleUserDiv').show();
+        }
+
+        function goToEditUser() {
+            $('.subcontent').hide();
+            $('#editUserDiv').show();
+        }
+
+        function goToGetBooks() {
+            $('.subcontent').hide();
+            $('#singleUserDiv').show();
+            $('#bookList').show();
+        }
+
+        function goToGetMyBooks() {
+            $('.subcontent').hide();
+            //$('#singleUserDiv').show();
+            $('#myBookList').show();
+            $('#myBooksOptions').show();
+        }
+
+        function goToEditMyBook() {
+            $('.subcontent').hide();
+            //$('#singleUserDiv').show();
+            $('#editMyBookDiv').show();
+        }
+
+        function goToAddBook() {
+            $('.subcontent').hide();
+            //$('#singleUserDiv').show();
+            $('#addMyBookDiv').show();
+
+        }
+
+        function setMessageDiv(message) {
+            console.log("here");
+            messageDiv.innerHTML = '<p><font color="red">' + message + '</font></p>';
+        }
+
+        function setSubMessageDiv(message) {
+            console.log("here");
+            submessageDiv.innerHTML = '<p><font color="red">' + message + '</font></p>';
+        }
+
+    </script>
+</body>
+</html>
